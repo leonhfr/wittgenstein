@@ -1,7 +1,21 @@
 // Internal.
+import { CreateAreaInput } from './Area';
 import { CreatePhotoInput } from './Photo';
 
 // Code.
+export const createMockAreaInput = (area?: any): CreateAreaInput => {
+  const _area = area || {};
+  return {
+    id: _area.id || '8ea8f412-4ee8-4f1d-9228-4c133b8fbd37',
+    name: _area.name || 'Sant Marti',
+    file: _area.file || 'sant-marti',
+    lastScheduledAt: _area.lastScheduledAt || 0,
+    refreshRate: _area.refreshRate || 86400,
+    enabled: _area.enabled || true,
+    zonesComputed: _area.zonesComputed || false,
+  };
+};
+
 export const createMockPhotoInput = (photo?: any): CreatePhotoInput => {
   const _photo = photo || {};
   return {

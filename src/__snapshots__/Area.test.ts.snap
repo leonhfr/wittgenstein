@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Area Class create should create a new instance 1`] = `
+Area {
+  "enabled": true,
+  "file": "sant-marti",
+  "id": "8ea8f412-4ee8-4f1d-9228-4c133b8fbd37",
+  "lastScheduledAt": 0,
+  "name": "Sant Marti",
+  "refreshRate": 86400,
+  "zonesComputed": false,
+}
+`;
+
+exports[`Area Class create should fail to create a new instance - invalid input 1`] = `[Error: ValidationError: Expected input not to be null.]`;
+
+exports[`Area Validation should match the expected value 1`] = `
+Array [
+  "id",
+  "name",
+  "file",
+  "lastScheduledAt",
+  "refreshRate",
+  "enabled",
+  "zonesComputed",
+]
+`;
