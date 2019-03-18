@@ -1,3 +1,4 @@
+import { Area } from './Area';
 import { Photo } from './Photo';
 
-export { Photo };
+export { Area, Photo };
