@@ -6,6 +6,7 @@ Photo {
   "description": "The Arc de Triomf was built as the entrance of the 1888 Barcelona Universal Exposition. It was designed by architect Josep Vilaseca i Casanovas in the Neo-Mudéjar style.",
   "farm": 5,
   "id": "32457360587",
+  "inside": true,
   "latitude": 41.390791,
   "longitude": 2.18114,
   "owner": "41710899@N08",
@@ -23,6 +24,7 @@ Photo {
   ],
   "title": "Arc de Triomf",
   "views": 16,
+  "zoneId": "4ab7068b-6c6c-46d2-8009-1d7d1ab35a3b",
 }
 `;
 
@@ -43,5 +45,7 @@ Array [
   "latitude",
   "longitude",
   "context",
+  "zoneId",
+  "inside",
 ]
 `;
