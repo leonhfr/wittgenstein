@@ -46,6 +46,14 @@ describe('Photo', () => {
     it('should handle an invalid input - missing props', () => {
       expect(isPhoto({})).toBe(false);
     });
+    it('should handle an invalid input - booleans', () => {
+      expect(
+        isPhoto({
+          ...Mocks.createMockPhotoInput(),
+          inside: '__FAIL__',
+        })
+      ).toBe(false);
+    });
     it('should handle an invalid input - numbers', () => {
       expect(
         isPhoto({

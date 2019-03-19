@@ -16,6 +16,8 @@ export class Photo {
   readonly latitude: number;
   readonly longitude: number;
   readonly context: number;
+  readonly zoneId: string;
+  readonly inside: boolean;
 
   static create(input: unknown): Photo | Error {
     if (isPhoto(input)) {
@@ -39,6 +41,8 @@ export class Photo {
     this.latitude = input.latitude;
     this.longitude = input.longitude;
     this.context = input.context;
+    this.zoneId = input.zoneId;
+    this.inside = input.inside;
   }
 }
 
@@ -58,6 +62,8 @@ export const PHOTO_PROPS = [
   'latitude',
   'longitude',
   'context',
+  'zoneId',
+  'inside',
 ];
 
 export const isPhoto = (input: unknown): input is CreatePhotoInput => {
@@ -102,6 +108,8 @@ export const isSafePhoto = (input: unknown): Types.IsSafe => {
     latitude,
     longitude,
     context,
+    zoneId,
+    inside,
   } = input as {
     id: unknown;
     owner: unknown;
@@ -116,13 +124,37 @@ export const isSafePhoto = (input: unknown): Types.IsSafe => {
     latitude: unknown;
     longitude: unknown;
     context: unknown;
+    zoneId: unknown;
+    inside: unknown;
   };
+
+  const booleans = { inside };
 
   const numbers = { farm, views, latitude, longitude, context };
 
-  const strings = { id, owner, secret, server, title, description, ownername };
+  const strings = {
+    id,
+    owner,
+    secret,
+    server,
+    title,
+    description,
+    ownername,
+    zoneId,
+  };
 
   const stringArrays = { tags };
+
+  // Booleans
+
+  for (const [key, value] of Object.entries(booleans)) {
+    if (typeof value !== 'boolean') {
+      return {
+        isSafe: false,
+        errMsg: `Expected type of input.${key} to be boolean, got ${typeof value}.`,
+      };
+    }
+  }
 
   // Numbers
 
@@ -188,4 +220,7 @@ export interface CreatePhotoInput {
   readonly latitude: number;
   readonly longitude: number;
   readonly context: number;
+
+  readonly zoneId: string;
+  readonly inside: boolean;
 }

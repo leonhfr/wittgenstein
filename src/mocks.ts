@@ -52,6 +52,8 @@ export const createMockPhotoInput = (photo?: any): CreatePhotoInput => {
     latitude: _photo.latitude || 41.390791,
     longitude: _photo.longitude || 2.18114,
     context: _photo.context || 0,
+    zoneId: _photo.zoneId || '4ab7068b-6c6c-46d2-8009-1d7d1ab35a3b',
+    inside: _photo.inside || true,
   };
 };
 
