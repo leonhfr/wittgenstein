@@ -1,6 +1,7 @@
 // Internal.
 import { CreateAreaInput } from './Area';
 import { CreatePhotoInput } from './Photo';
+import { CreateZoneInput } from './Zone';
 
 // Code.
 export const createMockAreaInput = (area?: any): CreateAreaInput => {
@@ -42,5 +43,22 @@ export const createMockPhotoInput = (photo?: any): CreatePhotoInput => {
     latitude: _photo.latitude || 41.390791,
     longitude: _photo.longitude || 2.18114,
     context: _photo.context || 0,
+  };
+};
+
+export const createMockZoneInput = (zone?: any): CreateZoneInput => {
+  const _zone = zone || {};
+  return {
+    id: _zone.id || '4ab7068b-6c6c-46d2-8009-1d7d1ab35a3b',
+    area: _zone.area || ['8ea8f412-4ee8-4f1d-9228-4c133b8fbd37'],
+    bbox: _zone.bbox || [2.18, 41.4, 2.19, 41.5],
+    zone: _zone.zone || {
+      geometry: {
+        coordinates: [[[2.18, 41.4], [2.19, 41.5], [2.19, 41.4], [2.18, 41.4]]],
+        type: 'Polygon',
+      },
+      properties: {},
+      type: 'Feature',
+    },
   };
 };

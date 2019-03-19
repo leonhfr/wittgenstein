@@ -4,5 +4,6 @@ exports[`index should expose the expected entries 1`] = `
 Object {
   "Area": [Function],
   "Photo": [Function],
+  "Zone": [Function],
 }
 `;

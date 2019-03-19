@@ -27,6 +27,8 @@
   },
   "license": "GPL-3.0-only",
   "dependencies": {
+    "@turf/helpers": "^6.1.4",
+    "@turf/invariant": "^6.1.2",
     "debug": "^4.0.1",
     "tslib": "^1.9.3"
   },
