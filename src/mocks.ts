@@ -1,7 +1,8 @@
 // Internal.
 import { CreateAreaInput } from './Area';
+import { CreateJobInput } from './Job';
 import { CreatePhotoInput } from './Photo';
-import { CreateZoneInput } from './Zone';
+import { Zone, CreateZoneInput } from './Zone';
 
 // Code.
 export const createMockAreaInput = (area?: any): CreateAreaInput => {
@@ -14,6 +15,14 @@ export const createMockAreaInput = (area?: any): CreateAreaInput => {
     refreshRate: _area.refreshRate || 86400,
     enabled: _area.enabled || true,
     zonesComputed: _area.zonesComputed || false,
+  };
+};
+
+export const createMockJobInput = (job?: any): CreateJobInput => {
+  const _job = job || {};
+  return {
+    page: _job.page || 1,
+    zone: _job.zone || createMockZone(),
   };
 };
 
@@ -62,3 +71,6 @@ export const createMockZoneInput = (zone?: any): CreateZoneInput => {
     },
   };
 };
+
+export const createMockZone = (): Zone =>
+  Zone.create(createMockZoneInput()) as Zone;

@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Job Class create should create a new instance 1`] = `
+Job {
+  "page": 1,
+  "zone": Zone {
+    "area": Array [
+      "8ea8f412-4ee8-4f1d-9228-4c133b8fbd37",
+    ],
+    "bbox": Array [
+      2.18,
+      41.4,
+      2.19,
+      41.5,
+    ],
+    "id": "4ab7068b-6c6c-46d2-8009-1d7d1ab35a3b",
+    "zone": Object {
+      "geometry": Object {
+        "coordinates": Array [
+          Array [
+            Array [
+              2.18,
+              41.4,
+            ],
+            Array [
+              2.19,
+              41.5,
+            ],
+            Array [
+              2.19,
+              41.4,
+            ],
+            Array [
+              2.18,
+              41.4,
+            ],
+          ],
+        ],
+        "type": "Polygon",
+      },
+      "properties": Object {},
+      "type": "Feature",
+    },
+  },
+}
+`;
+
+exports[`Job Class create should fail to create a new instance - invalid input 1`] = `[Error: ValidationError: Expected input not to be null.]`;
+
+exports[`Job Class create should handle an invalid input - zone 1`] = `[Error: [Zone Validation] ValidationError: Expected type of input to be object, got boolean.]`;
+
+exports[`Job Validation should match the expected value 1`] = `
+Array [
+  "page",
+  "zone",
+]
+`;
