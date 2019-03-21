@@ -62,14 +62,6 @@ describe('Zone', () => {
         })
       ).toBe(false);
     });
-    it('should handle an invalid input - string arrays', () => {
-      expect(
-        isZone({
-          ...Mocks.createMockZoneInput(),
-          area: [false],
-        })
-      ).toBe(false);
-    });
     it('should handle an invalid input - bbox', () => {
       expect(
         isZone({
