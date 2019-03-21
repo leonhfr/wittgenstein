@@ -4,9 +4,7 @@ exports[`Job Class create should create a new instance 1`] = `
 Job {
   "page": 1,
   "zone": Zone {
-    "area": Array [
-      "8ea8f412-4ee8-4f1d-9228-4c133b8fbd37",
-    ],
+    "area": "8ea8f412-4ee8-4f1d-9228-4c133b8fbd37",
     "bbox": Array [
       2.18,
       41.4,

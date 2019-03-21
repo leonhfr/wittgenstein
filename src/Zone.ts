@@ -8,7 +8,7 @@ import * as Types from './types';
 // Code.
 export class Zone {
   readonly id: string;
-  readonly area: Array<string>;
+  readonly area: string;
   readonly bbox: turfHelpers.BBox;
   readonly zone?: turfHelpers.Feature<turfHelpers.Polygon>;
 
@@ -68,9 +68,7 @@ export const isSafeZone = (input: unknown): Types.IsSafe => {
     zone: unknown;
   };
 
-  const strings = { id };
-
-  const stringArrays = { area };
+  const strings = { id, area };
 
   // Strings
 
@@ -80,26 +78,6 @@ export const isSafeZone = (input: unknown): Types.IsSafe => {
         isSafe: false,
         errMsg: `Expected type of input.${key} to be string, got ${typeof value}.`,
       };
-    }
-  }
-
-  // Array<string>
-
-  for (const [key, value] of Object.entries(stringArrays)) {
-    if (!Array.isArray(value)) {
-      return {
-        isSafe: false,
-        errMsg: `Expected type of input.${key} to be array, got ${typeof value}.`,
-      };
-    }
-
-    for (const item of value) {
-      if (typeof item !== 'string') {
-        return {
-          isSafe: false,
-          errMsg: `Expected type of input.${key} elements to be string, got ${typeof item} for one of them.`,
-        };
-      }
     }
   }
 
@@ -148,7 +126,7 @@ export const isSafeZone = (input: unknown): Types.IsSafe => {
 
 export interface CreateZoneInput {
   readonly id: string;
-  readonly area: Array<string>;
+  readonly area: string;
   readonly bbox: turfHelpers.BBox;
   readonly zone?: turfHelpers.Feature<turfHelpers.Polygon>;
 }

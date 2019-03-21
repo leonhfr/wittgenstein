@@ -2,9 +2,7 @@
 
 exports[`Zone Class create should create a new instance 1`] = `
 Zone {
-  "area": Array [
-    "8ea8f412-4ee8-4f1d-9228-4c133b8fbd37",
-  ],
+  "area": "8ea8f412-4ee8-4f1d-9228-4c133b8fbd37",
   "bbox": Array [
     2.18,
     41.4,
