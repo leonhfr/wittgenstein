@@ -74,5 +74,27 @@ export const createMockZoneInput = (zone?: any): CreateZoneInput => {
   };
 };
 
+export const createMockZoneMultiPolygonInput = (
+  zone?: any
+): CreateZoneInput => {
+  const _zone = zone || {};
+  return {
+    id: _zone.id || '4ab7068b-6c6c-46d2-8009-1d7d1ab35a3b',
+    area: _zone.area || '8ea8f412-4ee8-4f1d-9228-4c133b8fbd37',
+    bbox: _zone.bbox || [2.18, 41.4, 2.19, 41.5],
+    zone: _zone.zone || {
+      geometry: {
+        coordinates: [
+          [[[2.18, 41.4], [2.19, 41.5], [2.19, 41.4], [2.18, 41.4]]],
+          [[[2.18, 41.4], [2.18, 41.5], [2.19, 41.5], [2.18, 41.4]]],
+        ],
+        type: 'MultiPolygon',
+      },
+      properties: {},
+      type: 'Feature',
+    },
+  };
+};
+
 export const createMockZone = (): Zone =>
   Zone.create(createMockZoneInput()) as Zone;

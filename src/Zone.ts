@@ -10,7 +10,9 @@ export class Zone {
   readonly id: string;
   readonly area: string;
   readonly bbox: turfHelpers.BBox;
-  readonly zone?: turfHelpers.Feature<turfHelpers.Polygon>;
+  readonly zone?: turfHelpers.Feature<
+    turfHelpers.Polygon | turfHelpers.MultiPolygon
+  >;
 
   static create(input: unknown): Zone | Error {
     if (isZone(input)) {
@@ -99,20 +101,30 @@ export const isSafeZone = (input: unknown): Types.IsSafe => {
     }
   }
 
+  // zone?
+
   if (zone !== undefined) {
     try {
       turfInvariant.featureOf(
         zone as turfHelpers.Feature<any>,
         'Polygon',
-        'callingFunction'
+        'isSafeZone'
       );
     } catch (err) {
-      return {
-        isSafe: false,
-        errMsg: `Expected type of input.zone to be Feature<Polygon>. Turf.js threw ${
-          err.name
-        }: ${err.message}`,
-      };
+      try {
+        turfInvariant.featureOf(
+          zone as turfHelpers.Feature<any>,
+          'MultiPolygon',
+          'isSafeZone'
+        );
+      } catch (err) {
+        return {
+          isSafe: false,
+          errMsg: `Expected type of input.zone to be Feature<Polygon | MultiPolygon>. Turf.js threw ${
+            err.name
+          }: ${err.message}`,
+        };
+      }
     }
   }
 
@@ -128,5 +140,7 @@ export interface CreateZoneInput {
   readonly id: string;
   readonly area: string;
   readonly bbox: turfHelpers.BBox;
-  readonly zone?: turfHelpers.Feature<turfHelpers.Polygon>;
+  readonly zone?: turfHelpers.Feature<
+    turfHelpers.Polygon | turfHelpers.MultiPolygon
+  >;
 }
