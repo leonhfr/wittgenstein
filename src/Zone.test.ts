@@ -16,6 +16,11 @@ describe('Zone', () => {
       it('should create a new instance', () => {
         expect(Zone.create(Mocks.createMockZoneInput())).toMatchSnapshot();
       });
+      it('should create a new instance - MultiPolygon', () => {
+        expect(
+          Zone.create(Mocks.createMockZoneMultiPolygonInput())
+        ).toMatchSnapshot();
+      });
     });
   });
 
@@ -93,6 +98,19 @@ describe('Zone', () => {
         isZone({
           ...Mocks.createMockZoneInput(),
           zone: {},
+        })
+      ).toBe(false);
+      expect(
+        isZone({
+          ...Mocks.createMockZoneInput(),
+          zone: {
+            type: 'Feature',
+            properties: {},
+            geometry: {
+              type: 'LineString',
+              coordinates: [[2.19, 41.43], [2.23, 41.44]],
+            },
+          },
         })
       ).toBe(false);
     });
