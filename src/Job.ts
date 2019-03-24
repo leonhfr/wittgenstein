@@ -4,19 +4,20 @@ import * as Types from './types';
 
 // Code.
 export class Job {
+  readonly id: string;
   readonly page: number;
   readonly zone: Zone;
 
   static create(input: unknown): Job | Error {
     if (isJob(input)) {
-      const { page, zone } = input;
+      const { id, page, zone } = input;
       const maybeZone = Zone.create(zone);
 
       if (maybeZone instanceof Error) {
         return new Error(`[Zone Validation] ${maybeZone.message}`);
       }
 
-      return new Job({ page, zone: maybeZone });
+      return new Job({ id, page, zone: maybeZone });
     }
 
     const errMsg = isSafeJob(input).errMsg;
@@ -24,6 +25,7 @@ export class Job {
   }
 
   private constructor(input: CreateJobInput) {
+    this.id = input.id;
     this.page = input.page;
     this.zone = input.zone;
   }
@@ -31,7 +33,7 @@ export class Job {
 
 // Validation.
 
-export const JOB_PROPS = ['page', 'zone'];
+export const JOB_PROPS = ['id', 'page', 'zone'];
 
 export const isJob = (input: unknown): input is CreateJobInput => {
   return isSafeJob(input).isSafe;
@@ -61,11 +63,14 @@ export const isSafeJob = (input: unknown): Types.IsSafe => {
     }
   }
 
-  const { page } = input as {
+  const { id, page } = input as {
+    id: unknown;
     page: unknown;
   };
 
   const numbers = { page };
+
+  const strings = { id };
 
   // Numbers
 
@@ -74,6 +79,17 @@ export const isSafeJob = (input: unknown): Types.IsSafe => {
       return {
         isSafe: false,
         errMsg: `Expected type of input.${key} to be number, got ${typeof value}.`,
+      };
+    }
+  }
+
+  // Strings
+
+  for (const [key, value] of Object.entries(strings)) {
+    if (typeof value !== 'string') {
+      return {
+        isSafe: false,
+        errMsg: `Expected type of input.${key} to be string, got ${typeof value}.`,
       };
     }
   }
@@ -87,6 +103,7 @@ export const isSafeJob = (input: unknown): Types.IsSafe => {
 // Interface
 
 export interface CreateJobInput {
-  readonly zone: Zone;
+  readonly id: string;
   readonly page: number;
+  readonly zone: Zone;
 }
