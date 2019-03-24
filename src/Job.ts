@@ -5,19 +5,27 @@ import * as Types from './types';
 // Code.
 export class Job {
   readonly id: string;
+  readonly minUploadDate: number;
+  readonly maxUploadDate: number;
   readonly page: number;
   readonly zone: Zone;
 
   static create(input: unknown): Job | Error {
     if (isJob(input)) {
-      const { id, page, zone } = input;
+      const { id, minUploadDate, maxUploadDate, page, zone } = input;
       const maybeZone = Zone.create(zone);
 
       if (maybeZone instanceof Error) {
         return new Error(`[Zone Validation] ${maybeZone.message}`);
       }
 
-      return new Job({ id, page, zone: maybeZone });
+      return new Job({
+        id,
+        minUploadDate,
+        maxUploadDate,
+        page,
+        zone: maybeZone,
+      });
     }
 
     const errMsg = isSafeJob(input).errMsg;
@@ -26,6 +34,8 @@ export class Job {
 
   private constructor(input: CreateJobInput) {
     this.id = input.id;
+    this.minUploadDate = input.minUploadDate;
+    this.maxUploadDate = input.maxUploadDate;
     this.page = input.page;
     this.zone = input.zone;
   }
@@ -33,7 +43,13 @@ export class Job {
 
 // Validation.
 
-export const JOB_PROPS = ['id', 'page', 'zone'];
+export const JOB_PROPS = [
+  'id',
+  'minUploadDate',
+  'maxUploadDate',
+  'page',
+  'zone',
+];
 
 export const isJob = (input: unknown): input is CreateJobInput => {
   return isSafeJob(input).isSafe;
@@ -63,12 +79,14 @@ export const isSafeJob = (input: unknown): Types.IsSafe => {
     }
   }
 
-  const { id, page } = input as {
+  const { id, minUploadDate, maxUploadDate, page } = input as {
     id: unknown;
+    minUploadDate: unknown;
+    maxUploadDate: unknown;
     page: unknown;
   };
 
-  const numbers = { page };
+  const numbers = { minUploadDate, maxUploadDate, page };
 
   const strings = { id };
 
@@ -104,6 +122,8 @@ export const isSafeJob = (input: unknown): Types.IsSafe => {
 
 export interface CreateJobInput {
   readonly id: string;
+  readonly minUploadDate: number;
+  readonly maxUploadDate: number;
   readonly page: number;
   readonly zone: Zone;
 }
