@@ -16,6 +16,11 @@ describe('Zone', () => {
       it('should create a new instance', () => {
         expect(Zone.create(Mocks.createMockZoneInput())).toMatchSnapshot();
       });
+      it('should create a new instance - zone undefined', () => {
+        expect(
+          Zone.create({ ...Mocks.createMockZoneInput(), zone: undefined })
+        ).toMatchSnapshot();
+      });
       it('should create a new instance - MultiPolygon', () => {
         expect(
           Zone.create(Mocks.createMockZoneMultiPolygonInput())
@@ -30,11 +35,6 @@ describe('Zone', () => {
     });
     it('should match the expected value', () => {
       expect(ZONE_PROPS).toMatchSnapshot();
-    });
-    it('should be up to date', () => {
-      expect(ZONE_PROPS).toEqual(
-        Object.keys(Zone.create(Mocks.createMockZoneInput()))
-      );
     });
   });
 

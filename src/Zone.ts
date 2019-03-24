@@ -9,10 +9,8 @@ import * as Types from './types';
 export class Zone {
   readonly id: string;
   readonly area: string;
-  readonly bbox: turfHelpers.BBox;
-  readonly zone?: turfHelpers.Feature<
-    turfHelpers.Polygon | turfHelpers.MultiPolygon
-  >;
+  readonly bbox: Types.BoundingBox;
+  readonly zone?: Types.MultiPolygon;
 
   static create(input: unknown): Zone | Error {
     if (isZone(input)) {
@@ -33,7 +31,7 @@ export class Zone {
 
 // Validation.
 
-export const ZONE_PROPS = ['id', 'area', 'bbox', 'zone'];
+export const ZONE_PROPS = ['id', 'area', 'bbox'];
 
 export const isZone = (input: unknown): input is CreateZoneInput => {
   return isSafeZone(input).isSafe;
@@ -139,8 +137,6 @@ export const isSafeZone = (input: unknown): Types.IsSafe => {
 export interface CreateZoneInput {
   readonly id: string;
   readonly area: string;
-  readonly bbox: turfHelpers.BBox;
-  readonly zone?: turfHelpers.Feature<
-    turfHelpers.Polygon | turfHelpers.MultiPolygon
-  >;
+  readonly bbox: Types.BoundingBox;
+  readonly zone?: Types.MultiPolygon;
 }
