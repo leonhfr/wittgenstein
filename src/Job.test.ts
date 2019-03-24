@@ -59,5 +59,13 @@ describe('Job', () => {
         })
       ).toBe(false);
     });
+    it('should handle an invalid input - strings', () => {
+      expect(
+        isJob({
+          ...Mocks.createMockJobInput(),
+          id: false,
+        })
+      ).toBe(false);
+    });
   });
 });

@@ -2,6 +2,7 @@
 
 exports[`Job Class create should create a new instance 1`] = `
 Job {
+  "id": "7debb0f5-e53a-4df4-8c43-c96db89084f1",
   "page": 1,
   "zone": Zone {
     "area": "8ea8f412-4ee8-4f1d-9228-4c133b8fbd37",
@@ -49,6 +50,7 @@ exports[`Job Class create should handle an invalid input - zone 1`] = `[Error: [
 
 exports[`Job Validation should match the expected value 1`] = `
 Array [
+  "id",
   "page",
   "zone",
 ]

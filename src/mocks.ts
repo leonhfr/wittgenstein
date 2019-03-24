@@ -21,6 +21,7 @@ export const createMockAreaInput = (area?: any): CreateAreaInput => {
 export const createMockJobInput = (job?: any): CreateJobInput => {
   const _job = job || {};
   return {
+    id: _job.id || '7debb0f5-e53a-4df4-8c43-c96db89084f1',
     page: _job.page || 1,
     zone: _job.zone || createMockZone(),
   };
