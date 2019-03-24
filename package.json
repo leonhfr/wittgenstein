@@ -1,6 +1,6 @@
 {
   "name": "@scenicroutes/wittgenstein",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Wittgenstein: Library for Scenic Routes",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
